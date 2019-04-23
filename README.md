@@ -1,0 +1,2 @@
+# qt_g_sensor_visual_terminal
+重力售卖机可视化调试终端
