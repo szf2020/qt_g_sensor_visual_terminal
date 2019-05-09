@@ -1,4 +1,6 @@
-/build-qt_g_sensor_visual_terminal-Desktop_Qt_5_12_0_MinGW_64_bit-Release/*
-/build-qt_g_sensor_visual_terminal-Desktop_Qt_5_12_0_MinGW_64_bit-Debug/*
+/*
+!/qt_g_sensor_visual_terminal/
 /qt_g_sensor_visual_terminal/qt_g_sensor_visual_terminal.pro.*
-/dll_lib
+!/.gitignore
+!/LICENSE
+!/README.md
