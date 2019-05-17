@@ -18,7 +18,6 @@ communication::communication(QObject *parent) : QObject(parent)
     m_period_timer->setInterval(PERIOD_TIMEOUT);
 
     m_rsp_timer = new QTimer(this);
-    m_rsp_timer->setInterval(RSP_TIMEOUT);
 
     m_req_timer = new QTimer(this);
     m_req_timer->setInterval(REQ_TIMEOUT);
@@ -274,7 +273,7 @@ void communication::handle_query_weight_req()
         return;
     }
 
-    query_weight.timeout = RSP_TIMEOUT;
+    query_weight.timeout = QUERY_WEIGHT_TIMEOUT;
 
     query_weight.code = REQ_CODE_QUERY_WEIGHT;
 
@@ -312,7 +311,7 @@ void communication::handle_tare_req(int level)
         return;
     }
 
-    tare.timeout = RSP_TIMEOUT;
+    tare.timeout = REMOVE_TARE_TIMEOUT;
     tare.level = level;
     tare.code = REQ_CODE_TARE;
     tare.size = 8;
@@ -350,7 +349,7 @@ void communication::handle_calibration_req(int level,int calibration_weight)
         return;
     }
 
-    calibration.timeout = RSP_TIMEOUT;
+    calibration.timeout = CALIBRATION_TIMEOUT;
     calibration.level = level;
 
     if (calibration_weight == 0) {
@@ -400,7 +399,7 @@ void communication::handle_query_configration_req()
         return;
     }
 
-    query_configration.timeout = RSP_TIMEOUT;
+    query_configration.timeout = QUERY_CONFIGRATION_TIMEOUT;
 
     query_configration.code = REQ_CODE_QUERY_CONFIGRATION;
 

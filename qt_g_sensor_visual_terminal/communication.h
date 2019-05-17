@@ -19,7 +19,10 @@ public:
     enum {
         FRAME_TIMEOUT = 5,
         REQ_TIMEOUT = 5,
-        RSP_TIMEOUT = 50,
+        QUERY_WEIGHT_TIMEOUT = 50,
+        QUERY_CONFIGRATION_TIMEOUT = 50,
+        REMOVE_TARE_TIMEOUT = 300,
+        CALIBRATION_TIMEOUT = 300,
         PERIOD_TIMEOUT = 5
 
     };
