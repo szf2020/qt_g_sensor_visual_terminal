@@ -36,7 +36,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>重力售卖机生产调试终端v1.0.2</string>
+   <string>重力售卖机生产调试终端v1.0.3</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QLCDNumber" name="display_4">

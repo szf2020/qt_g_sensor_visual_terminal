@@ -92,7 +92,7 @@ void communication::handle_frame_timeout_event()
     int rc = -1;
     uint16_t crc_recv,crc_calculate;
 
-    int weight1,weight2,weight3,weight4;
+    int weight1 = 0x7fff,weight2=0x7fff,weight3=0x7fff,weight4=0x7fff;
     QString config("获取错误");
 
     m_rsp_timer->stop();/*停止定时器*/
@@ -130,10 +130,13 @@ void communication::handle_frame_timeout_event()
 
     switch (req_code ) {
     case REQ_CODE_QUERY_CONFIGRATION:/*配置*/
-        if (rsp_size == 11) {
-            config =  QString::number(rsp[5]) + " -- "+  QString::number(rsp[6])+" -- "+  QString::number(rsp[7]) +" -- "+  QString::number(rsp[8]);
-        } else {
+        if (rsp_size <= 7) {
             config = "获取错误";
+        } else {
+            config = "";
+            for (int i = 5;i < rsp_size - 2;i ++) {
+                config +=  (QString::number(rsp[i]) + ((i != rsp_size -3) ? "--" :""));
+            }
         }
     break;
     case REQ_CODE_TARE:/*去皮*/
@@ -151,12 +154,19 @@ void communication::handle_frame_timeout_event()
         }
     break;
      case REQ_CODE_QUERY_WEIGHT:/*净重*/
-        if (rsp_size == 15 ) {
+    if (rsp_size >= 9) {
             weight1 = rsp[6] * 256 + rsp[5];
-            weight2 = rsp[8] * 256 + rsp[7];
-            weight3 = rsp[10] * 256 + rsp[9];
-            weight4 = rsp[12] * 256 + rsp[11];
             rc = 0;
+        if (rsp_size >= 11) {
+            weight2 = rsp[8] * 256 + rsp[7];
+        }
+        if (rsp_size >= 13) {
+            weight3 = rsp[10] * 256 + rsp[9];
+        }
+        if (rsp_size >= 15) {
+            weight4 = rsp[12] * 256 + rsp[11];
+        }
+
         } else {
             rc = -20;/*协议错误*/
         }
